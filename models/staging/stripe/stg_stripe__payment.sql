@@ -14,7 +14,7 @@ renamed as (
         paymentmethod as payment_method,
         status as payment_status,
         amount/100 as payment_amount,
-        created as created_at,
+        created as created_at
 
     from source
 
