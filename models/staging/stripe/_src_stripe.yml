@@ -6,6 +6,11 @@ sources:
     schema: stripe
     tables:
       - name: payment
+        columns:
+           - name: id
+             data_tests:
+               - not_null
+               - unique
         config:
           freshness:
             warn_after:
