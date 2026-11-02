@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: stripe
     database: raw
-    scheme: stripe
+    schema: stripe
     tables:
       - name: payment
         config:
