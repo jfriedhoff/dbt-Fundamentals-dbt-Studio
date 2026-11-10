@@ -4,10 +4,13 @@ sources:
   - name: stripe
     database: raw
     schema: stripe
+    description: A clone of a PostgreSQL database in Snowflake
     tables:
       - name: payment
+        description: Raw payment data
         columns:
            - name: id
+             description: PK for payment
              data_tests:
                - not_null
                - unique

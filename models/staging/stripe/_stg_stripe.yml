@@ -2,6 +2,7 @@ models:
   - name: stg_stripe__payment
     columns:
       - name: payment_id
+        description: PK
         data_tests:
           - unique
           - not_null
@@ -13,6 +14,7 @@ models:
                   - success
                   - fail
       - name: order_id
+        description: FK to orders
         data_tests:
           - relationships:
               arguments:
