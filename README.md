@@ -52,11 +52,11 @@ tests/                # singular data tests
 | `stg_jaffle_shop__orders` | Cleaned orders with status |
 | `stg_stripe__payment` | Stripe payments, amounts converted from cents to dollars |
 | `fct_orders` | One row per order with the total of successful payments |
-| `dim_customers` | One row per customer with order history and lifetime value *(in progress)* |
+| `dim_customers` | One row per customer with order history and lifetime value |
 
 ## Data quality
 
-- **Generic tests:** `unique` and `not_null` on primary keys, `accepted_values` on order status, and a `relationships` test ensuring every order belongs to a known customer.
+- **Generic tests:** `unique` and `not_null` on primary keys, `accepted_values` on order and payment status, and `relationships` tests ensuring every order belongs to a known customer and every payment to a known order.
 - **Singular test:** `assert_stg_stripe__payment_total_positive` fails if any order's total payment amount is negative.
 - **Source freshness:** configured on `jaffle_shop.orders` and `stripe.payment` (warn after 12 hours, error after 24). The course sample data is static, so these checks are expected to report stale data.
 
@@ -87,7 +87,7 @@ dbt source freshness     # check source data freshness
 
 ## Roadmap
 
-- [ ] Finish `dim_customers`
-- [ ] Add tests for `stg_stripe__payment`
+- [x] Finish `dim_customers`
+- [x] Add tests for `stg_stripe__payment`
 - [ ] Add model and column descriptions and generate dbt docs
 - [ ] Move shared payment logic into an intermediate layer, so `dim_customers` no longer depends on `fct_orders`
