@@ -18,6 +18,9 @@ flowchart LR
         so[stg_jaffle_shop__orders]
         sp[stg_stripe__payments]
     end
+    subgraph intermediate [Intermediate · views]
+        ip[int_payments_aggregated_to_orders]
+    end
     subgraph marts [Marts · tables]
         fo[fct_orders]
         dc[dim_customers]
@@ -25,10 +28,12 @@ flowchart LR
     c --> sc
     o --> so
     p --> sp
+    sp --> ip
     so --> fo
-    sp --> fo
+    ip --> fo
     sc --> dc
-    fo --> dc
+    so --> dc
+    ip --> dc
 ```
 
 ## Project structure
@@ -38,6 +43,7 @@ models/
 ├── staging/          # 1:1 with source tables: renaming, type fixes, no joins (views)
 │   ├── jaffle_shop/
 │   └── stripe/
+├── intermediate/     # reusable logic shared by marts (views)
 └── marts/            # business-ready fact and dimension tables (tables)
 macros/
 ├── cents_to_dollars.sql
@@ -52,6 +58,7 @@ tests/                # singular data tests
 | `stg_jaffle_shop__customers` | Cleaned customer records |
 | `stg_jaffle_shop__orders` | Cleaned orders with status |
 | `stg_stripe__payments` | Stripe payments, amounts converted from cents to dollars |
+| `int_payments_aggregated_to_orders` | Total of successful payments per order |
 | `fct_orders` | One row per order with the total of successful payments |
 | `dim_customers` | One row per customer with order history and lifetime value |
 
@@ -91,4 +98,4 @@ dbt source freshness     # check source data freshness
 - [x] Finish `dim_customers`
 - [x] Add tests for `stg_stripe__payments`
 - [ ] Add model and column descriptions and generate dbt docs
-- [ ] Move shared payment logic into an intermediate layer, so `dim_customers` no longer depends on `fct_orders`
+- [x] Move shared payment logic into an intermediate layer, so `dim_customers` no longer depends on `fct_orders`

@@ -1,0 +1,13 @@
+models:
+  - name: int_payments_aggregated_to_orders
+    description: One row per order that has payments, with the total of its successful payments.
+    columns:
+      - name: order_id
+        description: PK
+        data_tests:
+          - unique
+          - not_null
+      - name: amount
+        description: Total of successful payments in dollars, 0 if all payments failed.
+        data_tests:
+          - not_null
