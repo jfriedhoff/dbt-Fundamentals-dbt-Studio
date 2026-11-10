@@ -2,6 +2,7 @@ sources:
   - name: jaffle_shop
     database: raw
     schema: jaffle_shop
+    description: A clone of a PostgreSQL database in Snowflake
     config:
       freshness:
         warn_after:
@@ -13,16 +14,20 @@ sources:
       loaded_at_field: _etl_loaded_at
     tables:
       - name: customers
+        description: Raw customer data
         columns:
           - name: id
+            description: PK for customer data
             data_tests:
               - not_null
               - unique
         config:
           freshness: null
       - name: orders
+        description: Raw order data
         columns:
           - name: id
+            description: PK for order data
             data_tests:
               - not_null
               - unique
