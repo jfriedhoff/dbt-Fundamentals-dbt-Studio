@@ -1,19 +1,17 @@
-version: 2
-
 sources:
   - name: stripe
     database: raw
     schema: stripe
-    description: Payment data from Stripe, loaded into Snowflake from the dbt tutorial's public S3 bucket.    
+    description: Payment data from Stripe, loaded into Snowflake from the dbt tutorial's public S3 bucket.
     tables:
       - name: payment
         description: Raw payment data
         columns:
-           - name: id
-             description: PK for payment
-             data_tests:
-               - not_null
-               - unique
+          - name: id
+            description: PK for payment
+            data_tests:
+              - not_null
+              - unique
         config:
           freshness:
             warn_after:
