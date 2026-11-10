@@ -2,7 +2,7 @@ sources:
   - name: jaffle_shop
     database: raw
     schema: jaffle_shop
-    description: A clone of a PostgreSQL database in Snowflake
+    description: Customer and order data from the Jaffle Shop application, loaded into Snowflake from the dbt tutorial's public S3 bucket.
     config:
       freshness:
         warn_after:
