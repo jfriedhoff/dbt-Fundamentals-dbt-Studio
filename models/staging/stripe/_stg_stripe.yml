@@ -1,5 +1,5 @@
 models:
-  - name: stg_stripe__payment
+  - name: stg_stripe__payments
     description: One row per payment
     columns:
       - name: payment_id
