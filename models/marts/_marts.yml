@@ -29,6 +29,10 @@ models:
         data_tests:
           - unique
           - not_null
+      - name: first_name
+        description: Customer's first name.
+      - name: last_name
+        description: Customer's last name.
       - name: first_order_date
         description: Date of the customer's first order, null if they have none.
       - name: most_recent_order_date

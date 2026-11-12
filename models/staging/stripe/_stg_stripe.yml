@@ -22,3 +22,9 @@ models:
               arguments:
                 field: order_id
                 to: ref('stg_jaffle_shop__orders')
+      - name: payment_method
+        description: Payment method, e.g. credit_card or coupon.
+      - name: payment_amount
+        description: Payment amount in dollars.
+      - name: created_at
+        description: Date the payment was created.
