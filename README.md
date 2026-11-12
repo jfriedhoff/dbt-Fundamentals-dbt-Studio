@@ -97,5 +97,5 @@ dbt source freshness     # check source data freshness
 
 - [x] Finish `dim_customers`
 - [x] Add tests for `stg_stripe__payments`
-- [ ] Add model and column descriptions and generate dbt docs
+- [x] Add model and column descriptions and generate dbt docs
 - [x] Move shared payment logic into an intermediate layer, so `dim_customers` no longer depends on `fct_orders`
