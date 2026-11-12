@@ -1,0 +1,39 @@
+models:
+  - name: fct_orders
+    description: One row per order with the total of its successful payments.
+    columns:
+      - name: order_id
+        description: PK
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: FK to customers
+        data_tests:
+          - relationships:
+              arguments:
+                field: customer_id
+                to: ref('stg_jaffle_shop__customers')
+      - name: order_date
+        description: Date the order was placed.
+      - name: amount
+        description: Total of successful payments in dollars, 0 if the order has none.
+        data_tests:
+          - not_null
+
+  - name: dim_customers
+    description: One row per customer with order history and lifetime value.
+    columns:
+      - name: customer_id
+        description: PK
+        data_tests:
+          - unique
+          - not_null
+      - name: first_order_date
+        description: Date of the customer's first order, null if they have none.
+      - name: most_recent_order_date
+        description: Date of the customer's most recent order, null if they have none.
+      - name: number_of_orders
+        description: Number of orders placed, 0 if none.
+      - name: lifetime_value
+        description: Total of successful payments across all orders in dollars, 0 if none.
